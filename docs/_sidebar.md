@@ -2,7 +2,7 @@
 
 - 目录
 
-  - [SecureLog](slog.html)
+  - [SecureLog](/slog.html)
 
 
 - 链接
