@@ -1,0 +1,19 @@
+{
+  "title": "SecCMD.net",
+  "license": "© 2023 Cyber Walker.",
+  "description": "{{description}}，为安全人员分享快速参考备忘单。",
+  "keywords": "reference,Quick,Reference,cheatsheet,cheat,sheet",
+  "language": "zh",
+  "data-info": "👆待完善需要您的参与",
+  "search": {
+    "label": "搜索",
+    "placeholder": "搜索备忘清单",
+    "cancel": "取消"
+  },
+  "editor": {
+    "label": "编辑"
+  },
+  "github": {
+    "url": "https://github.com/seccmd/secbase"
+  }
+}
