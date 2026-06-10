@@ -477,8 +477,8 @@
             <p>支持 Linux secure / auth.log 格式，拖拽文件到此处或点击选择</p>
             <input type="file" id="fileInput">
             <div class="button-group">
-                <button class="upload-btn" onclick="document.getElementById('fileInput').click()">选择文件</button>
-                <button class="demo-btn" onclick="loadDemoData()">功能演示</button>
+                <button class="upload-btn" id="selectFileBtn">选择文件</button>
+                <button class="demo-btn" id="demoBtn">功能演示</button>
             </div>
         </div>
 
@@ -632,11 +632,6 @@
             e.preventDefault();
             uploadArea.classList.remove('dragover');
             const file = e.dataTransfer.files[0];
-            if (file) processFile(file);
-        });
-
-        fileInput.addEventListener('change', (e) => {
-            const file = e.target.files[0];
             if (file) processFile(file);
         });
 
@@ -844,15 +839,37 @@
                 <p>支持 Linux secure / auth.log 格式，拖拽文件到此处或点击选择</p>
                 <input type="file" id="fileInput">
                 <div class="button-group">
-                    <button class="upload-btn" onclick="document.getElementById('fileInput').click()">选择文件</button>
-                    <button class="demo-btn" onclick="loadDemoData()">🎮 加载演示数据</button>
+                    <button class="upload-btn" id="selectFileBtn">选择文件</button>
+                    <button class="demo-btn" id="demoBtn">功能演示</button>
                 </div>
             `;
-            document.getElementById('fileInput').addEventListener('change', (e) => {
-                const file = e.target.files[0];
-                if (file) processFile(file);
-            });
+            bindEvents();
             document.getElementById('dashboard').classList.remove('active');
+        }
+
+        function bindEvents() {
+            const fileInput = document.getElementById('fileInput');
+            const selectBtn = document.getElementById('selectFileBtn');
+            const demoBtn = document.getElementById('demoBtn');
+
+            if (fileInput) {
+                fileInput.addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    if (file) processFile(file);
+                });
+            }
+
+            if (selectBtn) {
+                selectBtn.addEventListener('click', () => {
+                    document.getElementById('fileInput').click();
+                });
+            }
+
+            if (demoBtn) {
+                demoBtn.addEventListener('click', () => {
+                    loadDemoData();
+                });
+            }
         }
 
         function parseLogs(content) {
@@ -1423,6 +1440,7 @@
 
         // Set up event listeners after load
         setTimeout(() => {
+            bindEvents();
             const filterType = document.getElementById('filterType');
             const filterIP = document.getElementById('filterIP');
             const filterUser = document.getElementById('filterUser');
